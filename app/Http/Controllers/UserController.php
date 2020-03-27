@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 
 class UserController extends Controller
@@ -82,7 +83,7 @@ class UserController extends Controller
         $result = User::where('id',$id)->first();
         $result->hobi = $request->input('hobi');
         $result->asal = $request->input('asal');
-        $result->password = $request->input('password');
+        $result->password = Hash::make($request->input('password'));
         $result->save();
 
         if($result){
